@@ -17,8 +17,14 @@ import external.ExternalAPIFactory;
 
 // This is a singleton pattern.
 public class MySQLConnection implements DBConnection {
+	
+	
+	//singleton, db connection is costly
 	private static MySQLConnection instance;
 
+	
+	
+	
 	public static DBConnection getInstance() {
 		if (instance == null) {
 			instance = new MySQLConnection();

@@ -39,9 +39,26 @@ public class ItemHistory extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+				throws ServletException, IOException {
+	   String userId = request.getParameter("user_id");
+	   Set<Item> items = conn.getFavoriteItems(userId);
+	   JSONArray array = new JSONArray();
+	   for (Item item : items) {
+	     JSONObject obj = item.toJSONObject();
+	     try {
+	       obj.append("favorite", true);
+	     } catch (JSONException e) {
+	       e.printStackTrace();
+	     }
+	     array.put(obj);
+	   }
+	   RpcHelper.writeJsonArray(response, array);
 	}
+
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
