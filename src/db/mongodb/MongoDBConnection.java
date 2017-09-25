@@ -149,4 +149,17 @@ public class MongoDBConnection implements DBConnection {
 
 		
 	}
+	
+	@Override
+	public String getFullname(String userId) {
+		
+		return null;
+	}
+
+	@Override
+	public boolean verifyLogin(String userId, String password) {
+		
+		return false;
+	}
+
 }
